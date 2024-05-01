@@ -7,7 +7,7 @@ import MyTable from "../components/myTable";
 
 export default function Home() {
 
-const [entries, setEntries] = useState<{name: string, language:string, comment:string}[]>([]);
+const [entries, setEntries] = useState<{name: string, language:string, comment:string, rating:number}[]>([]);
 
 function addEntry(entry: {name: string, language:string, comment:string, rating: number}){
   setEntries([...entries, entry]);
