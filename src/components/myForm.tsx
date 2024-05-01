@@ -1,7 +1,7 @@
 'use client';
 //import use state
 import { useState, useEffect, ChangeEvent } from 'react';
-import { TextField, Box, MenuItem, Button } from '@mui/material';
+import { TextField, Box, MenuItem, Button, Rating, Typography } from '@mui/material';
 
 export default function MyForm(props: {addEntry: Function}){
     // TODO: add a select of programming languages
@@ -25,6 +25,7 @@ export default function MyForm(props: {addEntry: Function}){
           label: '¥',
         },
       ];
+    const [rating, setRating] = useState<number | null>();
     const [name, setName] = useState<string>("")
     const [proglang, setLang] = useState<string>("")
     const [comment, setComment] = useState<string>("")
@@ -47,6 +48,7 @@ export default function MyForm(props: {addEntry: Function}){
             name: name,
             language: proglang,
             comment: comment,
+            rating: rating
         }
         // const data = []
         // data.push(info)
@@ -84,11 +86,28 @@ export default function MyForm(props: {addEntry: Function}){
         <TextField
             placeholder="Comments"
             multiline
-            rows={15}
+            rows={5}
             maxRows={Infinity} onChange={handleCommentChange}/>
             <Button variant="outlined" onClick={handleButton}>Submit</Button>
+
+            <Box
+      sx={{
+        '& > legend': { mt: 2 },
+      }}
+    >
+      <Typography component="legend">Rating</Typography>
+      <Rating
+        name="simple-controlled"
+        value={rating}
+        onChange={(event, newValue) => {
+          setRating(newValue);
+        }}
+      />
+      </Box>
 
     </Box>
     )
     
 }
+
+
